@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Pokédex App</string>
+    <string name="favourites">Favourites</string>
+    <string name="text_no_favourite_placeholder">No favourites yet!</string>
+    <string name="text_delete_favourite_confirmation">
+        Are you sure you want to delete this item?
+    </string>
+    <string name="text_delete_favourites_confirmation">
+        Are you sure you want to delete all favourites?
+    </string>
+</resources>
