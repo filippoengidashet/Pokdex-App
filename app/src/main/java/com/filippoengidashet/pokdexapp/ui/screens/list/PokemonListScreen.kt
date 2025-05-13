@@ -39,7 +39,7 @@ fun PokemonListScreen(
 
     val lazyListState = rememberLazyListState()
     val pagingItems = viewModel.pagingData.collectAsLazyPagingItems()
-    val favourites = viewModel.favouritesState.collectAsStateWithLifecycle().value
+    val favourites = viewModel.favouriteListState.collectAsStateWithLifecycle().value
 
     val loadState = pagingItems.loadState
 

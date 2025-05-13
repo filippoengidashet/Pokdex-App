@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -104,7 +105,9 @@ fun FavouriteListScreen(
             )
         } else {
             LazyColumn(
-                Modifier.padding(innerPadding)
+                Modifier
+                    .padding(innerPadding)
+                    .testTag(FAVOURITES_TEST_TAG)
             ) {
                 items(favoriteEntities, key = { it.name }) { item ->
                     FavouriteListItem(
@@ -121,3 +124,5 @@ fun FavouriteListScreen(
         }
     }
 }
+
+const val FAVOURITES_TEST_TAG = "favourites_test_tag"

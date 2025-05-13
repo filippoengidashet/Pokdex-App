@@ -8,11 +8,13 @@ import com.filippoengidashet.pokdexapp.domain.usecase.GetAllFavouritesPokemonUse
 import com.filippoengidashet.pokdexapp.domain.usecase.GetPokemonDetailUseCase
 import com.filippoengidashet.pokdexapp.domain.usecase.RemoveFavouritePokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +28,7 @@ class PokemonDetailViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(PokemonDetailUiState())
     val uiState = _uiState.asStateFlow()
 
-    val favouritesState = getAllFavouritesPokemonUseCase().stateIn(
+    val favouriteListState = getAllFavouritesPokemonUseCase().stateIn(
         viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList()
     )
 
@@ -35,7 +37,7 @@ class PokemonDetailViewModel @Inject constructor(
             _uiState.value = PokemonDetailUiState(isLoading = true)
             viewModelScope.launch {
                 try {
-                    val result = pokemonDetailUseCase(name)
+                    val result = withContext(Dispatchers.IO) { pokemonDetailUseCase(name) }
                     _uiState.value = uiState.value.copy(result = result, isLoading = false)
                 } catch (e: Exception) {
                     _uiState.value = uiState.value.copy(

@@ -55,7 +55,7 @@ fun PokemonDetailScreen(
     }
 
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
-    val favourites = viewModel.favouritesState.collectAsStateWithLifecycle().value
+    val favourites = viewModel.favouriteListState.collectAsStateWithLifecycle().value
 
     val pokemonDetail = uiState.result
     val isLoading = uiState.isLoading

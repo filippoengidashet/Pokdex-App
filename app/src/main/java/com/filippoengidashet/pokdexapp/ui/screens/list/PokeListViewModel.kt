@@ -34,7 +34,7 @@ class PokeListViewModel @Inject constructor(
         }
     ).flow.cachedIn(viewModelScope)
 
-    val favouritesState = getAllFavouritesPokemonUseCase().stateIn(
+    val favouriteListState = getAllFavouritesPokemonUseCase().stateIn(
         viewModelScope, SharingStarted.WhileSubscribed(5000L), emptyList()
     )
 

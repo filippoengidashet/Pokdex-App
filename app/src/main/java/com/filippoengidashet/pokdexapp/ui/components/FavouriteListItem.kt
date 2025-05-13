@@ -45,7 +45,7 @@ fun FavouriteListItem(
                 onClick = {
                     onDelete.invoke()
                 },
-                modifier = Modifier.testTag("delete_favourite_button")
+                modifier = Modifier.testTag(DELETE_FAVOURITE_BUTTON_TEST_TAG)
             ) {
                 Icon(
                     Icons.Default.Delete,
@@ -57,6 +57,8 @@ fun FavouriteListItem(
         HorizontalDivider(color = Color.LightGray, thickness = 1.dp)
     }
 }
+
+const val DELETE_FAVOURITE_BUTTON_TEST_TAG = "delete_favourite_button"
 
 @Composable
 @Preview(showBackground = true)
