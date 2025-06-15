@@ -16,6 +16,8 @@ class PokemonRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getPokemonDetail(name: String): PokemonDetail {
-        return apiService.getPokemonDetail(name = name).toDomain()
+        return apiService.getPokemonDetail(name = name).let {
+            it.toDomain()
+        }
     }
 }

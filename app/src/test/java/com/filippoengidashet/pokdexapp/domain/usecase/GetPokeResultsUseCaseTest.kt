@@ -8,6 +8,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import junit.framework.TestCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -16,6 +17,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class GetPokeResultsUseCaseTest {
 
     private val repository: PokemonRepository = mockk(relaxed = true)
@@ -29,7 +31,7 @@ class GetPokeResultsUseCaseTest {
     }
 
     @Test
-    fun `getPokemonResults_success`() = runTest {
+    fun `getPokemonResults success`() = runTest {
 
         //GIVEN
         val mockResult = PokemonResults(
@@ -49,7 +51,7 @@ class GetPokeResultsUseCaseTest {
     }
 
     @Test(expected = RuntimeException::class)
-    fun `getPokemonResults_failure`() = runTest {
+    fun `getPokemonResults failure`() = runTest {
         //GIVEN
         val mockError = RuntimeException("no-network")
         coEvery { repository.getPokemonResults(any(), any()) } throws mockError

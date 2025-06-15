@@ -12,7 +12,7 @@ object Fixtures {
         override fun areContentsTheSame(oldItem: T, newItem: T) = oldItem == newItem
     }
 
-    val noopListCallback = object : ListUpdateCallback {
+    val noOpListCallback = object : ListUpdateCallback {
         override fun onInserted(position: Int, count: Int) = Unit
         override fun onRemoved(position: Int, count: Int) = Unit
         override fun onMoved(fromPosition: Int, toPosition: Int) = Unit

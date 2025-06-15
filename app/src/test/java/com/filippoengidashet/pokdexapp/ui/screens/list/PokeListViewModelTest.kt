@@ -25,6 +25,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class PokeListViewModelTest {
 
     private val testDispatcher = StandardTestDispatcher()//or UnconfinedTestDispatcher()
@@ -80,7 +81,7 @@ class PokeListViewModelTest {
             diffCallback = Fixtures.createDiffCallback<PokemonItem> { old, new ->
                 old.name == new.name
             },
-            updateCallback = Fixtures.noopListCallback,
+            updateCallback = Fixtures.noOpListCallback,
             mainDispatcher = testDispatcher,
             workerDispatcher = testDispatcher
         )
